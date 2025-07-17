@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   display: flex;
   flex-direction: column;
@@ -7,30 +11,62 @@ body {
 }
 
 header, main, footer {
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
+  max-width: 100%;
+  margin: auto;
 }
 
-header a {
+.cp {
+  margin-top: 50px;
+  font-size: 25px;
+  justify-self: center;
+  font-weight: bold;
+}
+.tombol {
+  margin: 5px 23%;
+  background-color: rgb(65, 89, 151);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  color: white;
+}
+.kolom {
+  width: 50%;
+  padding: 10px;
+  margin: 5px 23%;
+}
+
+.add {
+  padding: 10px 0;
+  font-size: 35px;
+  color:green;
+  justify-self: right;
+}
+
+a {
   color: inherit;
   text-decoration: none;
+  font-weight: bold;
 }
 
 header {
   font-family: var(--font-capriola);
-  padding: 14px 0;
+  padding: 14px;
   color: rgb(255, 255, 255);
   background-color: rgb(90, 183, 241);
-  text-indent:2em;
-  line-height:30px;
+  line-height:30px
+}
 
+.judul {
+  font-weight: bold;
+  font-size: 24px;
+  display: inline-block;
 }
 
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 8px;
 }
 
 footer {

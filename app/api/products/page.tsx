@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function ListProduk() {
     return (
         <div>
@@ -6,6 +7,8 @@ export default function ListProduk() {
             <p>Sweater</p>
             <p>Tas</p>
             <p>Amigurumi</p>
+            <p>.</p>
+            <p>Mau custom produk? Klik <Link href="./custom">di sini</Link></p>
         </div>
     )
 }

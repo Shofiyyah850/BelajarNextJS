@@ -17,16 +17,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }) {
   let header = (
     <header className = "navbar">
-        <div className = "navbar-start px-3">
-            <Link href = '/'><h1>CRONIT SHOP</h1></Link></div>
-        <div className = "navbar-end">
-            <div>
-                <Link href = '/products'>Products</Link></div>
-            <div>
-                <Link href= '/profile'>Profile</Link></div>
-            <div>
-                <Link href = '/contact'>Contact</Link></div>
-        </div>
+        <div className="flex justify-between">
+          <Link className = 'judul' href = '/'>CRONIT SHOP</Link>
+          <div className = "menu">
+            <Link href = '/api/products'>Products</Link>
+            <Link href= '/profile'>Profile</Link>
+            <Link href = '/contact'>Contact</Link></div></div>
     </header>
   )
   let footer = (
@@ -36,12 +32,12 @@ export default function RootLayout({ children }) {
   )
   return (
     <html lang="en">
-      <body
-        className={inter.className}
-      >
-        {header}
-        {children}
-        {footer}
+      <body className={inter.className}>
+        <div>
+          {header}
+          <div className='mt-8'>{children}</div>
+          {footer}
+        </div>
       </body>
     </html>
   );
