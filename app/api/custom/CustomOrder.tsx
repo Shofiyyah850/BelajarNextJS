@@ -1,3 +1,5 @@
+'use client';
+import { useState } from "react";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 export default function CustomOrder () {
@@ -13,7 +15,7 @@ export default function CustomOrder () {
             </div>
             <div>
                 <Link href= "/EditProduct/123">Edit</Link>
-                <Link href= "/"><RemoveBtn /></Link>
+                <Link href= "/"><RemoveBtn productId="123" /></Link>
             </div>
         </div>
         </>
