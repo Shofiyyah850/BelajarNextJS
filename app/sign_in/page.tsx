@@ -7,10 +7,21 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await signIn("credentials", { email, password, callbackUrl: "/" });
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const res = await signIn("credentials", {
+    email,
+    password,
+    redirect: false,
+    callbackUrl: "/",
+  });
+
+  if (res?.error) {
+    console.error("Sign-in error:", res.error);
+  } else if (res?.url) {
+    window.location.href = res.url;
+  }
+};
 
   return (
     <form onSubmit={handleSubmit}>

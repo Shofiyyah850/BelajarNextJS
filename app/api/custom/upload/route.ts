@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing fields." }, { status: 400 });
   }
 
-  // Save file to /public/uploads
   const uploadsDir = path.join(process.cwd(), "public", "uploads");
   await fs.mkdir(uploadsDir, { recursive: true });
   const fileName = `${Date.now()}_${file.name}`;
@@ -25,7 +24,6 @@ export async function POST(req: NextRequest) {
   await fs.writeFile(filePath, buffer);
   const fileUrl = `/uploads/${fileName}`;
 
-  // Save order info to database (assuming you have a CustomOrder model)
   const order = await prisma.customOrder.create({
     data: {
       description,

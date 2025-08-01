@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   pages: {
-    signIn: "/login",
+    signIn: "/sign_in",
   },
   providers: [
     CredentialsProvider({
@@ -33,9 +33,9 @@ export const authOptions: NextAuthOptions = {
         if (!user.password) throw new Error("No password set for user");
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) throw new Error("Invalid password");
-
+        console.log("Returning user from authorize:");
         return {
-          id: user.id,
+          id: String(user.id),
           name: user.name,
           email: user.email,
         };
@@ -46,6 +46,8 @@ export const authOptions: NextAuthOptions = {
   async jwt({ token, user }: { token: any; user?: any }) {
     if (user) {
       token.id = user.id;
+      token.email = user.email;
+      token.name = user.name;
     }
     return token;
   },

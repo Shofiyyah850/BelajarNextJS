@@ -1,8 +1,13 @@
 'use client'
 import Link from "next/link";
 import { useState } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function AddProduct() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  if (status === "loading") return <div>Loading...</div>
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
@@ -13,7 +18,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   const res = await fetch("/api/products_data", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, content }), // remove author
+    credentials: "include",
+    body: JSON.stringify({ title, content }),
   });
     if (res.ok) {
       setMessage("Produk berhasil ditambahkan!");

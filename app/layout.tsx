@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import AuthButton from "@/app/sign_in/AuthButton";
+import { Providers } from '@/app/providers';
 
 const inter = Inter({ 
   subsets: ["latin"], 
@@ -14,13 +16,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   let header = (
-    <header className = "navbar">
-        <div className="flex justify-between">
+    <header className = "navbar px-6 py-4">
+        <div className="flex items-center justify-between w-full">
           <Link className = 'judul' href = '/'>CRONIT SHOP</Link>
-          <div className = "menu">
-            <Link href = '/api/products'>Products</Link>
-            <Link href= '/profile'>Profile</Link>
-            <Link href = '/contact'>Contact</Link></div></div>
+          <div className="flex space-x-6 items-center">
+            <Link href="/api/products">Products</Link>
+            <Link href="/profile">Profile</Link>
+            <Link href="/contact">Contact</Link>
+            <AuthButton />
+          </div>
+        </div>
     </header>
   )
   let footer = (
@@ -32,9 +37,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <div>
+          <Providers>
           {header}
           <div className='mt-8'>{children}</div>
           {footer}
+          </Providers>
         </div>
       </body>
     </html>
